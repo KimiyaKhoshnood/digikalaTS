@@ -87,8 +87,8 @@ const Header = () => {
     }, 1000);
   }, []);
 
-  const { user, loadingUser, errorUser } = useSelector((state) => state.user);
-  const dispatch2 = useDispatch();
+  const { user, loadingUser, errorUser } = useSelector((state:RootState) => state.user);
+  const dispatch2 = useDispatch<AppDispatch>();
   useEffect(() => {
     setTimeout(() => {
       dispatch2(fetchUser());
@@ -138,7 +138,7 @@ const Header = () => {
           </div>
           <div className="flex items-center h-fit gap-4">
             {/* ???????????????? */}
-            {header?.login ? (
+            {user ? (
               <button className="h-[40px] flex items-center gap-1 px-5 border border-gray-300 rounded-lg text-xs font-semibold">
                 <Icon
                   icon={login}
@@ -207,7 +207,7 @@ const Header = () => {
                   icon={NavbarItemsP?.productSorting.icon}
                   text={header?.productSorting.text}
                   size={"text-md"}
-                  color={header?.productSorting.color}
+                  color={""}
                 />
                 {/* submenu for real */}
                 <div className="hidden fixed top-[168px] z-10 border xl:w-[1100px] w-[1000px] h-[70vh] shadow-lg bg-white rounded-bl-lg">
@@ -305,7 +305,7 @@ const Header = () => {
                       className="border-b-2 border-b-transparent hover:border-b-red-500 transition-all duration-1000"
                     >
                       <NavbarItems
-                        icon={elem.icon}
+                        icon={""}
                         text={elem.text}
                         color={"text-gray-500"}
                         size={"text-xs"}

@@ -1,23 +1,48 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const fetchFooter = createAsyncThunk(`footer/fetch`, async () => {
+type FooterData = {
+  contactUs: {text:string, id:number}[]
+  digikalaAdvantages: {img:string, text:string, id:number}[]
+  footerLists: {title:string, lists:{text:string, id:number}[], id:number}[]
+  socialMedia: {img:string, id:number}[]
+  downloadApp: {img:string, id:number}[]
+  info: string[]
+  readMoreBrands: {img:string, id:number}[]
+  digiBrands: {img:string, id:number}[]
+}
+
+// the initial state type
+type FooterState = {
+  footer: FooterData | null;
+  loading: boolean;
+  error: string;
+}
+
+export const fetchFooter = createAsyncThunk<FooterData | string>(`footer/fetch`, async () => {
   try {
     const res = await axios.get(`http://localhost:3005/footer`)
     return res.data;
   } catch (error) {
-    console.log(error.message);
-    return error.message;
+    if (axios.isAxiosError(error)) {
+      console.error(error.message);
+      return error.message || "An error occurred";
+    }
+    console.error("Unexpected error", error);
+    return "Unexpected error occurred";
   }
 });
 
+const initialState: FooterState = {
+  footer: null,
+  loading: true,
+  error: "",
+}
+
 const FooterReducer = createSlice({
   name: `footer`,
-  initialState: {
-    footer: null,
-    loading: true,
-    error: "",
-  },
+  initialState,
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchFooter.fulfilled, (state, action) => {
@@ -28,7 +53,7 @@ const FooterReducer = createSlice({
             : (state.footer = action.payload);
         }
       })
-      .addCase(fetchFooter.pending, (state, action) => {
+      .addCase(fetchFooter.pending, (state) => {
         state.loading = true;
       })
       .addCase(fetchFooter.rejected, (state) => {

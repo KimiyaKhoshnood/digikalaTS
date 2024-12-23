@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// Define the type for header data
 type HeaderData = {
   login: boolean
   productSorting: {text: string, icon: string, id: number}
@@ -14,7 +13,7 @@ type HeaderData = {
     id:number}[]
 }
 
-// Define the initial state type
+// the initial state type
 type HeaderState = {
   header: HeaderData | null;
   loading: boolean;
