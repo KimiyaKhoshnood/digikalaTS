@@ -1,7 +1,13 @@
+import React from 'react';
 import Icon from 'react-icons-kit';
 import {moreHorizontal} from 'react-icons-kit/feather/moreHorizontal'
 
-const HighlightItems = ({image, text}) => {
+type HighlightItemsProp = {
+  image: string
+  text: string
+}
+
+const HighlightItems:React.FC<HighlightItemsProp> = ({image, text}) => {
     return ( 
         <>
         <div className="lg:w-full w-[82px]">

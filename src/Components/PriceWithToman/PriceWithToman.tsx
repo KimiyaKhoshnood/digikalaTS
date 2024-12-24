@@ -1,4 +1,11 @@
-const PriceWithToman = ({price , textSize}) => {
+import React from "react";
+
+type PriceWithTomanProp = {
+  price:string
+  textSize:string
+}
+
+const PriceWithToman:React.FC<PriceWithTomanProp> = ({price , textSize}) => {
   return (
     <div className="flex gap-1 items-center">
       <span className={`${textSize}`}>{price}</span>

@@ -1,7 +1,14 @@
+import React from 'react'
 import Icon from 'react-icons-kit'
 import {arrow_left} from 'react-icons-kit/ikons/arrow_left'
 
-const BlueLinkWithLeftArrow = ({text, size, functionBtn}) => {
+type BlueLinkWithLeftArrowProp = {
+  text:string
+  size:string
+  functionBtn?:React.MouseEventHandler<HTMLSpanElement> | undefined
+}
+
+const BlueLinkWithLeftArrow:React.FC<BlueLinkWithLeftArrowProp> = ({text, size, functionBtn}) => {
   return (
     <span 
       onClick={functionBtn} 

@@ -1,4 +1,6 @@
-const SwipperImages = ({image}) => {
+import React from "react";
+
+const SwipperImages:React.FC<{image:string}> = ({image}) => {
     return ( 
         <>
         <div className="flex h-full w-full lg:px-0 px-2">

@@ -1,4 +1,11 @@
-const BuyBySortingItems = ({image, text}) => {
+import React from "react";
+
+type BuyBySortingItemsProp = {
+    image:string
+    text:string
+}
+
+const BuyBySortingItems:React.FC<BuyBySortingItemsProp> = ({image, text}) => {
     return ( 
         <>
         <a className="flex flex-col gap-2 items-center px-2 lg:w-[132px] w-[122px]  m-1" href="">

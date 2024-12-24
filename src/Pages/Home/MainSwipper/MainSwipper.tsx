@@ -6,14 +6,15 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import SwipperImages from "./SwipperImages";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { fetchPost } from "../../../Redux/Posts/PostReducer";
 import Skeleton from "react-loading-skeleton";
+import { AppDispatch, RootState } from "../../../Redux/Store";
 
 
-const MainSwipper = () => {
-    const { home, loading, error } = useSelector((state) => state.home);
-    const dispatch = useDispatch();
+const MainSwipper:React.FC = () => {
+    const { home, loading, error } = useSelector((state:RootState) => state.home);
+    const dispatch = useDispatch<AppDispatch>();
     useEffect(() => {
       setTimeout(() => {
         dispatch(fetchPost());

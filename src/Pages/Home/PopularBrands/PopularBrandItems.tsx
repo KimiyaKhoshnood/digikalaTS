@@ -1,4 +1,6 @@
-const PopularBrandItems = ({image}) => {
+import React from "react";
+
+const PopularBrandItems:React.FC<{image:string}> = ({image}) => {
     return ( 
         <>
         <a href="" className="block py-1 px-4 bg-white">

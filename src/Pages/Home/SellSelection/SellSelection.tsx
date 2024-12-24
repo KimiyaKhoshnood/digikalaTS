@@ -4,11 +4,12 @@ import OffPercent from "../../../Components/OffPercent/OffPercent"
 import PriceWithToman from "../../../Components/PriceWithToman/PriceWithToman"
 import SellSelectionItems from "./SellSelectionItems"
 import { fetchPost } from "../../../Redux/Posts/PostReducer"
-import { useEffect } from "react"
+import React, { useEffect } from "react"
+import { AppDispatch, RootState } from "../../../Redux/Store"
 
-const SellSelection = () => {
-  const {home, loading, error} = useSelector((state)=>state.home)
-    const dispatch = useDispatch()
+const SellSelection:React.FC = () => {
+  const {home, loading, error} = useSelector((state:RootState)=>state.home)
+    const dispatch = useDispatch<AppDispatch>()
     useEffect(()=>{
         dispatch(fetchPost())
   },[])

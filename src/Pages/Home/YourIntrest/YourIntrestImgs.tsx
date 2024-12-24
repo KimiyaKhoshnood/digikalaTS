@@ -1,7 +1,15 @@
 import { Link } from "react-router-dom"
 import BlueLinkWithLeftArrow from "../../../Components/BlueLinkWithLeftArrow/BlueLinkWithLeftArrow"
+import React from "react"
 
-const YourIntrestImgs = ({eachIntrest}) => {
+type YourIntrestImgs = {
+    eachIntrest:{
+        title: string,
+        images: {title:string, img:string, id:number}[]
+    }
+}
+
+const YourIntrestImgs:React.FC<YourIntrestImgs> = ({eachIntrest}) => {
   return (
     <>
     {/* title does not exist */}

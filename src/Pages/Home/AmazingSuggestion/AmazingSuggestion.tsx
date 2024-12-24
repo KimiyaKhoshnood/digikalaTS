@@ -11,10 +11,11 @@ import {ic_keyboard_arrow_left} from 'react-icons-kit/md/ic_keyboard_arrow_left'
 import {arrowLeft} from 'react-icons-kit/feather/arrowLeft'
 import Skeleton from "react-loading-skeleton";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { fetchPost } from "../../../Redux/Posts/PostReducer";
+import { AppDispatch, RootState } from "../../../Redux/Store";
 
-const AmazingSuggestion = () => {
+const AmazingSuggestion:React.FC = () => {
     // let AmazingSuggestionP = [
     //     {"image":"https://dkstatics-public.digikala.com/digikala-products/49583a51f0f0e51843718c0a14bda58c683e1bdf_1718703853.jpg?x-oss-process=image/resize,m_lfit,h_300,w_300/format,webp/quality,q_80", "title":"ساعت هوشمند ورنا مدل W49 ultra with 7 Bands", "oldPrice":"۱,۰۰۰,۰۰۰", "newPrice":"۷۵۸,۰۰۰", "off":"۲۴"},
     //     {"image":"https://dkstatics-public.digikala.com/digikala-products/c157c00d7dd882089e1eb6959352e5cb2132ebe1_1646038481.jpg?x-oss-process=image/resize,m_lfit,h_300,w_300/format,webp/quality,q_80", "title":"کرم مرطوب کننده و آبرسان آرت وینا مدل اکسترا پلاس حجم 75 میلی لیتر", "oldPrice":"۶۸۰,۰۰۰", "newPrice":"۲۷۹,۰۰۰", "off":"۵۹"},
@@ -30,8 +31,8 @@ const AmazingSuggestion = () => {
     //     {"image":"https://dkstatics-public.digikala.com/digikala-products/c157c00d7dd882089e1eb6959352e5cb2132ebe1_1646038481.jpg?x-oss-process=image/resize,m_lfit,h_300,w_300/format,webp/quality,q_80", "title":"کرم مرطوب کننده و آبرسان آرت وینا مدل اکسترا پلاس حجم 75 میلی لیتر", "oldPrice":"۶۸۰,۰۰۰", "newPrice":"۲۷۹,۰۰۰", "off":"۵۹"},
     // ]
 
-    const { home, loading, error } = useSelector((state) => state.home);
-    const dispatch = useDispatch();
+    const { home, loading, error } = useSelector((state:RootState) => state.home);
+    const dispatch = useDispatch<AppDispatch>();
     useEffect(() => {
       setTimeout(() => {
         dispatch(fetchPost());

@@ -1,12 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import TwoPicItems from "./TwoPicItems";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { fetchPost } from "../../../Redux/Posts/PostReducer";
+import { AppDispatch, RootState } from "../../../Redux/Store";
 
-const TwoPicsBox = () => {
+const TwoPicsBox:React.FC = () => {
 
-    const {home, loading, error} = useSelector((state)=>state.home)
-    const dispatch = useDispatch()
+    const {home, loading, error} = useSelector((state:RootState)=>state.home)
+    const dispatch = useDispatch<AppDispatch>()
     useEffect(()=>{
         dispatch(fetchPost())
     },[])

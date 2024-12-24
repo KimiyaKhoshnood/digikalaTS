@@ -10,6 +10,7 @@ type HomeData = {
   FourPicItemsP: {image:string, id:number}[]
   BuyBySortingItemsP: {image:string, text:string, id:number}[]
   TwoPicItemsP: {image:string, id:number}[]
+  PopularBrandP: {image:string, id:number}[]
   YourIntrestP: {title:string, images:{title:string ,img:string, id:number}[], id:number}[]
   DigiclubP: {title:string, icon:string, image:string, id:number}[]
   SellSelectionP: {img:string, offPrice:string, price:string, offPercent:string, id:number}[]

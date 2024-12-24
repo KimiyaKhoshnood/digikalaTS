@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from "react-redux"
-import BlueLinkWithLeftArrow from "../../../Components/BlueLinkWithLeftArrow/BlueLinkWithLeftArrow"
 import YourIntrestImgs from "./YourIntrestImgs"
 import { useEffect } from "react"
 import { fetchPost } from "../../../Redux/Posts/PostReducer"
+import { AppDispatch, RootState } from "../../../Redux/Store"
 
 const YourIntrest = () => {
-    const {home, loading, error} = useSelector((state)=>state.home)
-    const dispatch = useDispatch()
+    const {home, loading, error} = useSelector((state:RootState)=>state.home)
+    const dispatch = useDispatch<AppDispatch>()
     useEffect(()=>{
         dispatch(fetchPost())
     },[])

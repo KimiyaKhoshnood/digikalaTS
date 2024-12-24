@@ -1,4 +1,6 @@
-const BannerSupermarket = () => {
+import React from "react";
+
+const BannerSupermarket:React.FC = () => {
     return ( 
         <>
         <div className="lg:hidden block p-4 w-full">

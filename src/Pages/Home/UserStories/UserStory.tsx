@@ -1,4 +1,12 @@
-const UserStory = ({text, img, status}) => {
+import React from "react";
+
+type UserStoryProp = {
+    text: string
+    img: string
+    status: string
+}
+
+const UserStory:React.FC<UserStoryProp> = ({text, img, status}) => {
     return ( 
         <>
         <div className="flex flex-col lg:px-4 px-1 gap-2 w-fit">

@@ -2,8 +2,17 @@ import { Link } from "react-router-dom";
 import LineThroughPrice from "../../../Components/LineThroughPrice/LineThroughPrice";
 import OffPercent from "../../../Components/OffPercent/OffPercent";
 import PriceWithToman from "../../../Components/PriceWithToman/PriceWithToman";
+import React from "react";
 
-const AmazingSuggestionItems = ({image, title, oldPrice, newPrice, off}) => {
+type AmazingSuggestionItemsProp = {
+    image: string
+    title: string
+    oldPrice: string
+    newPrice: string
+    off: string
+}
+
+const AmazingSuggestionItems:React.FC<AmazingSuggestionItemsProp> = ({image, title, oldPrice, newPrice, off}) => {
     return ( 
         <>
         <Link to={`/product?${title}`} className="h-full lg:w-[160px] w-[130px] p-[14px] flex flex-col justify-center">

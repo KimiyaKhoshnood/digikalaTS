@@ -9,10 +9,11 @@ import { useEffect } from "react";
 import { fetchPost } from "../../../Redux/Posts/PostReducer";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { AppDispatch, RootState } from "../../../Redux/Store";
 
 const UserStories = () => {
-  const { home, loading, error } = useSelector((state) => state.home);
-  const dispatch = useDispatch();
+  const { home, loading, error } = useSelector((state:RootState) => state.home);
+  const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     setTimeout(() => {
       dispatch(fetchPost());

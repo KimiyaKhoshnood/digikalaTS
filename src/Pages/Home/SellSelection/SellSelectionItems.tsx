@@ -2,8 +2,19 @@ import { Link } from "react-router-dom"
 import LineThroughPrice from "../../../Components/LineThroughPrice/LineThroughPrice"
 import OffPercent from "../../../Components/OffPercent/OffPercent"
 import PriceWithToman from "../../../Components/PriceWithToman/PriceWithToman"
+import React from "react"
 
-const SellSelectionItems = ({eachProduct}) => {
+type SellSelectionItemsProp = {
+  eachProduct:{
+    img:string
+    offPercent:string
+    offPrice:string
+    price:string
+    id:number
+  }
+}
+
+const SellSelectionItems:React.FC<SellSelectionItemsProp> = ({eachProduct}) => {
   return (
     <>
     {/* title does not exist */}

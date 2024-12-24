@@ -1,15 +1,15 @@
 import Icon from 'react-icons-kit';
 import {arrowLeft} from 'react-icons-kit/feather/arrowLeft'
 import ASupermarketItems from './ASupermarketItems';
-import { useEffect, useState } from 'react';
-import Skeleton from 'react-loading-skeleton';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPost } from '../../../Redux/Posts/PostReducer';
+import { AppDispatch, RootState } from '../../../Redux/Store';
 
-const AmazingSupermarket = () => {
+const AmazingSupermarket:React.FC = () => {
 
-  const { home, loading, error } = useSelector((state) => state.home);
-  const dispatch = useDispatch();
+  const { home, loading, error } = useSelector((state:RootState) => state.home);
+  const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     setTimeout(() => {
       dispatch(fetchPost());

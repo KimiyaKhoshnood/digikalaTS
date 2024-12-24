@@ -1,7 +1,13 @@
 import { Link } from "react-router-dom";
 import OffPercent from "../../../Components/OffPercent/OffPercent";
+import React from "react";
 
-const ASupermarketItems = ({image, off}) => {
+type ASupermarketItemsProp = {
+    image:string
+    off:string
+}
+
+const ASupermarketItems:React.FC<ASupermarketItemsProp> = ({image, off}) => {
     return ( 
         <>
         {/* title does not exist */}

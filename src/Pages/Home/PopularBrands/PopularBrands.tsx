@@ -8,25 +8,21 @@ import {  Navigation} from 'swiper/modules';
 import "swiper/css/free-mode";
 import 'swiper/css';
 import 'swiper/css/navigation';
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { AppDispatch, RootState } from "../../../Redux/Store";
+import { fetchPost } from "../../../Redux/Posts/PostReducer";
 
-const PopularBrands = () => {
-  let PopularBrandP = [
-    {"image":"https://dkstatics-public.digikala.com/digikala-brands/2c36ceb629598fa31b9b321fcd4e47773bd93ef7_1649498016.png?x-oss-process=image/resize,m_lfit,h_160,w_160/quality,q_80", "id":1},
-    {"image":"https://dkstatics-public.digikala.com/digikala-brands/7d615272ba7fc5dd708195ae858e2971de86a06f_1649498033.png?x-oss-process=image/resize,m_lfit,h_160,w_160/quality,q_80", "id":2},
-    {"image":"https://dkstatics-public.digikala.com/digikala-brands/2c36ceb629598fa31b9b321fcd4e47773bd93ef7_1649498016.png?x-oss-process=image/resize,m_lfit,h_160,w_160/quality,q_80", "id":3},
-    {"image":"https://dkstatics-public.digikala.com/digikala-brands/7d615272ba7fc5dd708195ae858e2971de86a06f_1649498033.png?x-oss-process=image/resize,m_lfit,h_160,w_160/quality,q_80", "id":4},
-    {"image":"https://dkstatics-public.digikala.com/digikala-brands/2c36ceb629598fa31b9b321fcd4e47773bd93ef7_1649498016.png?x-oss-process=image/resize,m_lfit,h_160,w_160/quality,q_80", "id":5},
-    {"image":"https://dkstatics-public.digikala.com/digikala-brands/7d615272ba7fc5dd708195ae858e2971de86a06f_1649498033.png?x-oss-process=image/resize,m_lfit,h_160,w_160/quality,q_80", "id":6},
-    {"image":"https://dkstatics-public.digikala.com/digikala-brands/2c36ceb629598fa31b9b321fcd4e47773bd93ef7_1649498016.png?x-oss-process=image/resize,m_lfit,h_160,w_160/quality,q_80", "id":7},
-    {"image":"https://dkstatics-public.digikala.com/digikala-brands/7d615272ba7fc5dd708195ae858e2971de86a06f_1649498033.png?x-oss-process=image/resize,m_lfit,h_160,w_160/quality,q_80", "id":8},
-    {"image":"https://dkstatics-public.digikala.com/digikala-brands/2c36ceb629598fa31b9b321fcd4e47773bd93ef7_1649498016.png?x-oss-process=image/resize,m_lfit,h_160,w_160/quality,q_80", "id":9},
-    {"image":"https://dkstatics-public.digikala.com/digikala-brands/7d615272ba7fc5dd708195ae858e2971de86a06f_1649498033.png?x-oss-process=image/resize,m_lfit,h_160,w_160/quality,q_80", "id":10},
-    {"image":"https://dkstatics-public.digikala.com/digikala-brands/2c36ceb629598fa31b9b321fcd4e47773bd93ef7_1649498016.png?x-oss-process=image/resize,m_lfit,h_160,w_160/quality,q_80", "id":11},
-    {"image":"https://dkstatics-public.digikala.com/digikala-brands/7d615272ba7fc5dd708195ae858e2971de86a06f_1649498033.png?x-oss-process=image/resize,m_lfit,h_160,w_160/quality,q_80", "id":12},
-    {"image":"https://dkstatics-public.digikala.com/digikala-brands/2c36ceb629598fa31b9b321fcd4e47773bd93ef7_1649498016.png?x-oss-process=image/resize,m_lfit,h_160,w_160/quality,q_80", "id":13},
-    {"image":"https://dkstatics-public.digikala.com/digikala-brands/7d615272ba7fc5dd708195ae858e2971de86a06f_1649498033.png?x-oss-process=image/resize,m_lfit,h_160,w_160/quality,q_80", "id":14},
-  ]
+const PopularBrands:React.FC = () => {
 
+  const { home, loading, error } = useSelector((state:RootState) => state.home);
+    const dispatch = useDispatch<AppDispatch>();
+    useEffect(() => {
+      setTimeout(() => {
+        dispatch(fetchPost());
+      }, 1000);
+    }, []);
 
   return (
     <>
@@ -44,7 +40,7 @@ const PopularBrands = () => {
               modules={[Navigation]}
               className="mySwiper h-full"
             >
-              {PopularBrandP.map((elem) => {
+              {home?.PopularBrandP.map((elem) => {
                 return (
                   <SwiperSlide className="!w-fit h-full border-l" key={elem.id}>
                     <PopularBrandItems image={elem.image}/>

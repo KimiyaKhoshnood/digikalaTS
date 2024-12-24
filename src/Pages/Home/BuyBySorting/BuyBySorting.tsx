@@ -9,12 +9,13 @@ import "swiper/css/navigation";
 import { FreeMode, Navigation } from "swiper/modules";
 import BuyBySortingItems from "./BuyBySortingItems";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { fetchPost } from "../../../Redux/Posts/PostReducer";
+import { AppDispatch, RootState } from "../../../Redux/Store";
 
-const BuyBySorting = () => {
-  const { home, loading, error } = useSelector((state) => state.home);
-  const dispatch = useDispatch();
+const BuyBySorting:React.FC = () => {
+  const { home, loading, error } = useSelector((state:RootState) => state.home);
+  const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     dispatch(fetchPost());
   }, []);

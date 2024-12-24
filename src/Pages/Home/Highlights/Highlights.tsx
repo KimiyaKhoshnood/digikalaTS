@@ -9,22 +9,23 @@ import "swiper/css/scrollbar";
 
 // import required modules
 import { FreeMode, Scrollbar } from "swiper/modules";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPost } from "../../../Redux/Posts/PostReducer";
 import Skeleton from "react-loading-skeleton";
+import { AppDispatch, RootState } from "../../../Redux/Store";
 
-const Highlights = () => {
+const Highlights:React.FC = () => {
 
-  const { home, loading, error } = useSelector((state) => state.home);
-  const dispatch = useDispatch();
+  const { home, loading, error } = useSelector((state:RootState) => state.home);
+  const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     setTimeout(() => {
       dispatch(fetchPost());
     }, 1000);
   }, []);
 
-  const [width, setWidth] = useState(window.innerWidth);
+  const [width, setWidth] = useState<number>(window.innerWidth);
 
   useEffect(() => {
     const updateWindowDimensions = () => {
@@ -47,7 +48,7 @@ const Highlights = () => {
             slidesPerView={width>1024?10:"auto"}
             spaceBetween={5}
             freeMode={true}
-            scrollbar={{clickable: true}}
+            scrollbar={true}
             modules={[FreeMode, Scrollbar]}
             className="mySwiper !w-full lg:grid lg:grid-cols-10"
           >
