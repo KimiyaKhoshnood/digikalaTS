@@ -183,7 +183,7 @@ const Footer:React.FC = () => {
             {footer?.digiBrands.map((elem) => {
               return (
                 elem.id <= 8 && (
-                  <div className="flex-1 flex justify-center bg-gray-200 py-7 border-b border-r border-gray-300">
+                  <div key={elem.id} className="flex-1 flex justify-center bg-gray-200 py-7 border-b border-r border-gray-300">
                     <img className="h-[20px]" src={elem.img} alt="" />
                   </div>
                 )
@@ -194,7 +194,7 @@ const Footer:React.FC = () => {
             {footer?.digiBrands.map((elem) => {
               return (
                 elem.id > 8 && (
-                  <div className="flex-1 flex justify-center bg-gray-200 py-7 border-b border-r border-gray-300">
+                  <div key={elem.id} className="flex-1 flex justify-center bg-gray-200 py-7 border-b border-r border-gray-300">
                     <img className="h-[20px]" src={elem.img} alt="" />
                   </div>
                 )

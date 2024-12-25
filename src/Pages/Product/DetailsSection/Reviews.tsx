@@ -3,11 +3,23 @@ import {moreVertical} from 'react-icons-kit/feather/moreVertical'
 import Rating from './Rating'
 import { shop } from 'react-icons-kit/ikons/shop'
 import {ic_thumb_up_outline} from 'react-icons-kit/md/ic_thumb_up_outline'
-import {ic_thumb_up} from 'react-icons-kit/md/ic_thumb_up'
 import {ic_thumb_down_outline} from 'react-icons-kit/md/ic_thumb_down_outline'
-import {ic_thumb_down} from 'react-icons-kit/md/ic_thumb_down'
+import React from 'react'
 
-const Reviews = ({comment}) => {
+type ReviewsProp = {
+  comment:{
+    user:string
+    date:string
+    rateEnglish:number
+    comment:string
+    guaranteeName:string
+    like:number
+    dislike:number
+    color:string
+  }
+}
+
+const Reviews:React.FC<ReviewsProp> = ({comment}) => {
   return (
     <div className='lg:border-b lg:border-0 border rounded-lg py-5 lg:px-0 px-5 flex lg:w-auto w-[270px]' >
         <div className='flex-1 flex flex-col gap-4'>

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { CSSProperties, useRef, useState } from 'react'
 import Icon from 'react-icons-kit'
 import { share } from 'react-icons-kit/entypo/share'
 import { ic_flip } from 'react-icons-kit/md/ic_flip'
@@ -7,15 +7,21 @@ import { ic_notifications_active_outline } from 'react-icons-kit/md/ic_notificat
 import { ic_timeline } from 'react-icons-kit/md/ic_timeline'
 import { heartOutline } from 'react-icons-kit/typicons/heartOutline'
 
-const ProductPics = () => {
-  const imageZoomRef = useRef(null);
+interface CustomCSSProperties extends CSSProperties {
+  [key: `--${string}`]: string;
+}
+
+const ProductPics:React.FC = () => {
+  const imageZoomRef = useRef<HTMLDivElement | null>(null);
   const [zoomStyles, setZoomStyles] = useState({
     display: "none",
     zoomX: "0%",
     zoomY: "0%",
-  });
-  const handleMouseMove = (event) => {
+  })
+  const handleMouseMove = (event:React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const imageZoom = imageZoomRef.current;
+    console.log(imageZoom);
+    
     if (imageZoom) {
       const pointer = {
         x: (event.nativeEvent.offsetX * 100) / imageZoom.offsetWidth,
@@ -65,7 +71,7 @@ const ProductPics = () => {
                 "--zoom-x": zoomStyles.zoomX,
                 "--zoom-y": zoomStyles.zoomY,
                 "--display": zoomStyles.display,
-              }}
+              }as CustomCSSProperties}
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseOut}
             >

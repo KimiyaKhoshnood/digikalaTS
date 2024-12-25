@@ -20,7 +20,7 @@ const Blog = () => {
         </div>
         <div className="gap-4 grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1">
           {home?.BlogP?.map((elem) => {
-            return <div className="border rounded-xl">
+            return <div className="border rounded-xl" key={elem.id}>
                 <img src={elem.img} alt="" className="rounded-t-xl"/>
                 <p className="text-xs leading-loose px-4 mt-2 mb-4">{elem.text}</p>
             </div>

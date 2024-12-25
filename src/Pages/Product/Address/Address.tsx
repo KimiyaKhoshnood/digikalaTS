@@ -3,14 +3,15 @@ import {shop} from 'react-icons-kit/ikons/shop'
 import {megaphone} from 'react-icons-kit/entypo/megaphone'
 import { useDispatch, useSelector } from "react-redux"
 import { fetchProduct } from "../../../Redux/Posts/ProductReducer"
-import { useEffect } from "react"
+import React, { useEffect } from "react"
+import { AppDispatch, RootState } from "../../../Redux/Store"
 
-const Address = () => {
-  const { product, loading, error } = useSelector((state) => state.product);
-  const dispatch = useDispatch();
+const Address:React.FC = () => {
+  const { product, loading, error } = useSelector((state:RootState) => state.product);
+  const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     setTimeout(() => {
-      dispatch(fetchProduct());
+      dispatch(fetchProduct(""));
     }, 1000);
   }, []);
   
@@ -19,9 +20,9 @@ const Address = () => {
         <div className="flex gap-2">
             {
                 product?.AddressP.map((elem, index)=>{
-                    return <>
+                    return <div key={elem.id}>
                     <a href="">{elem.text}</a> {(index<(product.AddressP.length-1))? "/": null}
-                    </>
+                    </div>
                 })
             }
         </div>

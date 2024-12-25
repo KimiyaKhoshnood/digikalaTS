@@ -1,7 +1,4 @@
 import { useDispatch, useSelector } from "react-redux"
-import LineThroughPrice from "../../../Components/LineThroughPrice/LineThroughPrice"
-import OffPercent from "../../../Components/OffPercent/OffPercent"
-import PriceWithToman from "../../../Components/PriceWithToman/PriceWithToman"
 import SellSelectionItems from "./SellSelectionItems"
 import { fetchPost } from "../../../Redux/Posts/PostReducer"
 import React, { useEffect } from "react"
@@ -22,7 +19,7 @@ const SellSelection:React.FC = () => {
             </div>
             <div className="grid xl:grid-cols-6 lg:grid-cols-5 grid-cols-2 divide-x divide-x-reverse divide-y">
                 {home?.SellSelectionP.map((elem)=> {
-                    return <SellSelectionItems eachProduct={elem}/>
+                    return <SellSelectionItems eachProduct={elem} key={elem.id}/>
                 })}
             </div>
         </div>

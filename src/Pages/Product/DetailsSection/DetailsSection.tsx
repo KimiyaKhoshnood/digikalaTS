@@ -6,10 +6,7 @@ import { checkSquare } from "react-icons-kit/feather/checkSquare";
 import PriceWithToman from "../../../Components/PriceWithToman/PriceWithToman";
 import TopicWithRedLine from "../TopicWithRedLine/TopicWithRedLine";
 import BlueLinkWithLeftArrow from "../../../Components/BlueLinkWithLeftArrow/BlueLinkWithLeftArrow";
-import { useEffect, useState } from "react";
-import { starFull } from "react-icons-kit/icomoon/starFull";
-import { starHalf } from "react-icons-kit/icomoon/starHalf";
-import { starEmpty } from "react-icons-kit/icomoon/starEmpty";
+import React, { useEffect, useState } from "react";
 import { sortAmountDesc } from "react-icons-kit/icomoon/sortAmountDesc";
 import Reviews from "./Reviews";
 import Rating from "./Rating";
@@ -25,146 +22,28 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProduct } from "../../../Redux/Posts/ProductReducer";
 import { arrow_left } from "react-icons-kit/ikons/arrow_left";
 import {ic_forum} from 'react-icons-kit/md/ic_forum'
+import { AppDispatch, RootState } from "../../../Redux/Store";
 
-const DetailsSection = () => {
-  // const DetailsSectionP = {
-  //   img: "https://dkstatics-public.digikala.com/digikala-products/8da0ac0e9c414ff6bc745cd6b032ef61e6d93cf1_1730113501.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90",
-  //   title:
-  //     "گوشی موبایل اپل مدل iPhone 13 CH دو سیم‌ کارت ظرفیت 128 گیگابایت و رم 4 گیگابایت - نات اکتیو",
-  //   color: "مشکی",
-  //   guaranteeName: "هشتگ کالا رز همراه",
-  //   guarantee: "گارانتی ۱۸ ماهه رز همراه فروهر",
-  //   available: true,
-  //   price: "۴۵,۸۹۹,۰۰۰",
-  //   introduction:
-  //     "گوشی موبایل iPhone 13 CH پرچم‌دار جدید شرکت اپل است که با چند ویژگی جدید و دوربین دوگانه روانه بازار شده است. نمایشگر آیفون 13 به پنل Super Retina مجهز ‌شده است تا تصاویر بسیار مطلوبی را به کاربر عرضه کند. این نمایشگر رزولوشن بسیار بالایی دارد؛ به‌طوری‌که در اندازه­‌ی 6.1 اینچی‌اش، حدود 460 پیکسل را در هر اینچ جا داده است. امکان شارژ بی‌‌سیم باتری در این گوشی وجود دارد. تشخیص چهره با استفاده از دوربین جلو دیگر ویژگی است که در آیفون جدید اپل به کار گرفته شده است. از نظر سخت‌‌افزاری این گوشی از تراشه­‌ی جدید A15 بهره می‌برد که دارای 15 میلیارد ترانزیستور است که دارای کنترل گرمای مطلوبی بوده که تا بتواند علاوه بر کارهای معمول، از قابلیت‌های جدید واقعیت مجازی که اپل این روزها روی آن تمرکز خاصی دارد، پشتیبانی کند. به گفته خود شرکت اپل این گوشی دارای سرعتی 50 برابر نسخه 12 خود است. پردازنده دارای ماژولار جدیدی است که مصرف باتری را بسیار پایین‌تر آورده است و شما دارای حفظ باتری بالاتری هستید. اپل در این سری از گوشی‌های iPhone خود پردازنده گرافیکی‌ای را قرار داده که از سری 12 گوشی‌های خود 30 درصد سریع‌تر است و این نویدبخش آن است که شما می‌توانید بازی‌هایی را با گرافیک و MAP سنگین تر و بزرگ‌تر اجرا کنید. یکی از ویژگی‌هایی که در iPhone 13 شاهد هستیم سیستم فیلمبرداری ProRes سینمایی آن است که می تواند انقلابی در فیلمبرداری گوشی‌های موبایل به‌راه انداخته باشد. گوشی‌های نات اکتیو با قرار گرفتن سیم‌کارت‌های داخلی اکتیو می‌شوند و برخلاف مدل اکتیو پلمپ کالا باز نشده است. گوشی‌های اکتیو برند اپل هم به این شکل هستند که به دلیل محدودیت‌های برخی از محصولات اپل برای کشور ایران، در کشور‌های همسایه به‌صورت رسمی با یک بار قرار گرفتن سیم‌کارت، اکتیو شده و پلمپ می‌شوند و باید بدانید که این پروسه هیچ مشکلی در راستای گارانتی کالا به‌همراه ندارد. پارت‌نامبر‌های اروپا و ژاپن و امارات تک سیم‌کارت هستند و پارت‌نامبر‌های مربوط به امارات هم از فیس تایم پشتیبانی نمی‌کنند. پارت‌نامبر JA (ژاپن) هم حتی در حالت سایلنت صدای شاتر عکس قطع نمی‌شود.",
-  //   professionalDetails: {
-  //     introduction:
-  //       "گوشی‌های هوشمند خانواده آیفون 13 در قالب چهار گوشی آیفون 13 پرو مکس، آیفون 13 پرو، آیفون 13 و آیفون 13 مینی معرفی شدند. بدون شک دو مدل پرو و پرو مکس به عنوان پرچمداران این شرکت از مشخصات فنی قدرتمند‌تری بهره برده‌اند. اما در این میان آیفون 13 به همراه مدل مینی با قیمتی مقرون‌به‌صرفه‌تر روانه بازار شده‌اند تا امکان خرید برای کاربران بیشتری امکان‌پذیر باشد. در این مقاله خواهیم دید که آیفون 13 به نسبت نسل قبلی چه مشخصاتی با خود به‌همراه داشته و در بخش‌های مختلف چه عملکردی را از خودش به‌نمایش می‌گذارد. شاید با توجه به مشخصات تقریبا مشابه آیفون 13 و آیفون 12، این سوال برای شما به وجود آید که چرا آیفون 13 می‌تواند عملکرد بهتری داشته باشد. پس با ما همراه باشید تا به دلایل عملکرد بهتر و قدرتمند‌تر آیفون 13 به نسبت آیفون 12 پی ببرید.",
-  //     img: "https://dkstatics-public.digikala.com/digikala-reviews/1ab22d57eaceec398123173e592835275e6d027e_1632043862.jpg?x-oss-process=image/quality,q_70",
-  //   },
-  //   overallDetails: [
-  //     { title: "نوع گوشی موبایل", detail: "سیستم عامل iOS", id: 1 },
-  //     { title: "دسته ‌بندی", detail: "پرچم‌دار", id: 2 },
-  //     { title: "مدل", detail: "iPhone ۱۳ CH", id: 3 },
-  //     { title: "زمان معرفی", detail: "۱۴ سپتامبر ۲۰۲۱", id: 4 },
-  //     { title: "ابعاد", detail: "۱۴۶.۷x۷۱.۵x۷.۶۵ میلی‌متر", id: 5 },
-  //   ],
-  //   opinions: {
-  //     rateEnglish: "4.5",
-  //     ratePersian: "۴.۵",
-  //     opinionsCount: "۸,۹۷۷",
-  //     commentsCount: "۸,۲۵۲",
-  //     qusetionsCount: "۲,۹۰۴",
-  //   },
-  //   comments: [
-  //     {
-  //       img: "https://dkstatics-public.digikala.com/digikala-comment-files/1365c6d3fea1631cb378690a07c6401be01b7aa2_1663925882.jpeg?x-oss-process=image/resize,m_lfit,h_1024,w_1024/quality,q_80",
-  //       user: "کاربر دیجی‌کالا",
-  //       rateEnglish: 2.5,
-  //       date: "۱۰ ساعت پیش",
-  //       comment: "سلام سریع رسید ب دستم دقیق همون ساعت مرسی دیجی کالا",
-  //       guaranteeName: "اسمارت تکنولوژی قشم",
-  //       color: "سفید",
-  //       like: 0,
-  //       dislike: 0,
-  //       id: 1,
-  //     },
-  //     {
-  //       img: "https://dkstatics-public.digikala.com/digikala-comment-files/e1882bbdffe6169610337ddd901134062d19e0f0_1652873908.jpeg?x-oss-process=image/resize,m_lfit,h_1024,w_1024/quality,q_80",
-  //       user: "کاربر دیجی‌کالا",
-  //       rateEnglish: 5,
-  //       date: "۱۰ ساعت پیش",
-  //       comment: "سلام سریع رسید ب دستم دقیق همون ساعت مرسی دیجی کالا",
-  //       guaranteeName: "اسمارت تکنولوژی قشم",
-  //       color: "سفید",
-  //       like: 0,
-  //       dislike: 0,
-  //       id: 2,
-  //     },
-  //     {
-  //       img: "https://dkstatics-public.digikala.com/digikala-comment-files/97314e3336eacad0a24b30b3a59d55a9ab61af26_1659511974.jpeg?x-oss-process=image/resize,m_lfit,h_1024,w_1024/quality,q_80",
-  //       user: "کاربر دیجی‌کالا",
-  //       rateEnglish: 4.5,
-  //       date: "۱۰ ساعت پیش",
-  //       comment: "سلام سریع رسید ب دستم دقیق همون ساعت مرسی دیجی کالا",
-  //       guaranteeName: "اسمارت تکنولوژی قشم",
-  //       color: "سفید",
-  //       like: 0,
-  //       dislike: 0,
-  //       id: 3,
-  //     },
-  //     {
-  //       img: "https://dkstatics-public.digikala.com/digikala-comment-files/73576b21ef699181b349ee49aad3d9ef9090682a_1652696686.jpg?x-oss-process=image/resize,m_lfit,h_1024,w_1024/quality,q_80",
-  //       user: "کاربر دیجی‌کالا",
-  //       rateEnglish: 3,
-  //       date: "۱۰ ساعت پیش",
-  //       comment: "سلام سریع رسید ب دستم دقیق همون ساعت مرسی دیجی کالا",
-  //       guaranteeName: "اسمارت تکنولوژی قشم",
-  //       color: "سفید",
-  //       like: 0,
-  //       dislike: 0,
-  //       id: 4,
-  //     },
-  //   ],
-  //   questions: [
-  //     {
-  //       question:
-  //         "آقا الان که دیگه ۱۴ و ۱۵ ریجستر میشن بنظرتون هنوز همین ۱۳ ارزش خرید داره؟",
-  //       answer: null,
-  //       id: 1,
-  //     },
-  //     {
-  //       question: "سلام گوشی نات اکتیو هستن؟ و اکبنده؟:) ",
-  //       answer: {
-  //         answer: "سلام.بله",
-  //         user: "علیرضا حبیبی",
-  //         tag: "خریدار",
-  //         like: 0,
-  //         dislike: 0,
-  //       },
-  //       id: 2,
-  //     },
-  //     {
-  //       question: "سلام گوشی نات اکتیو هستن؟ و اکبنده؟:) ",
-  //       answer: {
-  //         answer: "سلام.بله",
-  //         user: "علیرضا حبیبی",
-  //         tag: "خریدار",
-  //         like: 0,
-  //         dislike: 0,
-  //       },
-  //       id: 3,
-  //     },
-  //     {
-  //       question: "سلام گوشی نات اکتیو هستن؟ و اکبنده؟:) ",
-  //       answer: {
-  //         answer: "سلام.بله",
-  //         user: "علیرضا حبیبی",
-  //         tag: "خریدار",
-  //         like: 0,
-  //         dislike: 0,
-  //       },
-  //       id: 4,
-  //     },
-  //   ],
-  // };
+const DetailsSection:React.FC = () => {
 
-  const { product, loading, error } = useSelector((state) => state.product);
-  const dispatch = useDispatch();
+  const { product, loading, error } = useSelector((state:RootState) => state.product);
+  const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     setTimeout(() => {
-      dispatch(fetchProduct());
+      dispatch(fetchProduct(""));
     }, 1000);
   }, []);
 
-  const [readMore, setReadMore] = useState(false);
-  const [readMoreBtn, setReadMoreBtn] = useState("بیشتر");
+  const [readMore, setReadMore] = useState<boolean>(false);
+  const [readMoreBtn, setReadMoreBtn] = useState<"بیشتر"|"بستن">("بیشتر");
 
-  const ReadMoreBtnFunc = () => {
+  const ReadMoreBtnFunc = ():void => {
     setReadMore(!readMore);
     readMore ? setReadMoreBtn("بیشتر") : setReadMoreBtn("بستن");
   };
+
+  console.log(product);
+  
 
   return (
     <div className="w-full max-w-[1676px] py-4">
@@ -217,13 +96,13 @@ const DetailsSection = () => {
           <div className="h-1 bg-gray-100"></div>
 
           <section className="py-5 px-4" id="details">
-            <TopicWithRedLine title={"مشخصات"} className="hidden" />
+            <TopicWithRedLine title={"مشخصات"} />
             <div className="flex lg:flex-row flex-col gap-5 py-5 leading-loose">
               <span className="!w-64">مشخصات کلی</span>
               <div className="flex flex-col lg:text-sm text-xs flex-1">
                 {product?.DetailsSectionP.tableDetails.map((elem) => {
                   return (
-                    <div className="flex items-center">
+                    <div key={elem.id} className="flex items-center">
                       <p className="text-gray-500 lg:w-[200px] w-[104px]">
                         {elem.title}
                       </p>
@@ -280,7 +159,7 @@ const DetailsSection = () => {
                     <span className="text-[10px]">{" از ۵ "}</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <Rating rate={product?.rates.starsEnglish} size={20} />
+                    {product && <Rating rate={product.rates.starsEnglish} size={20} />}
                     <span className="text-gray-400 text-[10px] leading-loose">
                       از مجموع {product?.rates.opinions} امتیاز
                     </span>
@@ -307,6 +186,7 @@ const DetailsSection = () => {
                   {product?.DetailsSectionP.comments.map((elem) => {
                     return (
                       <img
+                        key={elem.id}
                         className="lg:w-[57px] lg:h-[57px] w-[80px] h-[80px] rounded-lg"
                         src={elem.img}
                         alt=""
@@ -433,8 +313,7 @@ const DetailsSection = () => {
                   <div className="lg:block hidden">
                     {product?.DetailsSectionP.questions.map((elem) => {
                       return (
-                        <>
-                          <div className="lg:block hidden border-b-2">
+                          <div key={elem.id} className="lg:block hidden border-b-2">
                             <div className="border-b py-1">
                               <div className="flex items-center gap-4">
                                 <Icon
@@ -480,10 +359,9 @@ const DetailsSection = () => {
                               ) : null}
                             </div>
                             <div className="text-xs p-6">
-                              <BlueLinkWithLeftArrow text={"ثبت پاسخ"} />
+                              <BlueLinkWithLeftArrow text={"ثبت پاسخ"}  size={"text-xs"}/>
                             </div>
                           </div>
-                        </>
                       );
                     })}
                   </div>
@@ -594,10 +472,10 @@ const DetailsSection = () => {
               ) : null}
             </div>
             <div className="flex justify-end">
-              <PriceWithToman
-                price={product?.ProductSellers[0].price}
+              {product && <PriceWithToman
+                price={product.ProductSellers[0].price}
                 textSize={"text-lg font-bold"}
-              />
+              />}
             </div>
             <span className="text-xs text-sky-700">
               {"۱۰+ هزار بازدید در ۲۴ ساعت اخیر"}

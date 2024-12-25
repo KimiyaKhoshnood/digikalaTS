@@ -1,4 +1,6 @@
-const Loading = () => {
+import React from "react";
+
+const Loading:React.FC = () => {
   return (
     <>
       <div className="h-[70vh]"></div>

@@ -1,13 +1,14 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProduct } from "../../../Redux/Posts/ProductReducer";
+import { AppDispatch, RootState } from "../../../Redux/Store";
 
-const DigikalaAdvantages = () => {
-  const { product, loading, error } = useSelector((state) => state.product);
-  const dispatch = useDispatch();
+const DigikalaAdvantages:React.FC = () => {
+  const { product, loading, error } = useSelector((state:RootState) => state.product);
+  const dispatch = useDispatch<AppDispatch>();
     useEffect(() => {
       setTimeout(() => {
-        dispatch(fetchProduct());
+        dispatch(fetchProduct(""));
     }, 1000);
   }, []);
   
@@ -17,7 +18,7 @@ const DigikalaAdvantages = () => {
         <div className="flex gap-1 py-3 max-w-[1636px] w-full bg-white">
               {product?.digikalaAdvantagesP.map((elem) => {
                 return (
-                  <div className="text-[10px] text-center text-gray-400 flex-1 flex lg:flex-row flex-col items-center justify-center">
+                  <div key={elem.id} className="text-[10px] text-center text-gray-400 flex-1 flex lg:flex-row flex-col items-center justify-center">
                     <img className="w-11 h-11" src={elem.img} alt="" />
                     <h4>{elem.text}</h4>
                   </div>

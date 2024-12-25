@@ -6,15 +6,16 @@ import "swiper/css/navigation";
 import { FreeMode, Navigation } from "swiper/modules";
 import AmazingSuggestionItems from "../../Home/AmazingSuggestion/AmazingSuggestionItems";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { fetchProduct } from "../../../Redux/Posts/ProductReducer";
+import { AppDispatch, RootState } from "../../../Redux/Store";
 
-const BoughtTogether = () => {
-    const { product, loading, error } = useSelector((state) => state.product);
-    const dispatch = useDispatch();
+const BoughtTogether:React.FC = () => {
+    const { product, loading, error } = useSelector((state:RootState) => state.product);
+    const dispatch = useDispatch<AppDispatch>();
     useEffect(() => {
       setTimeout(() => {
-        dispatch(fetchProduct());
+        dispatch(fetchProduct(""));
       }, 1000);
     }, []);
   return (

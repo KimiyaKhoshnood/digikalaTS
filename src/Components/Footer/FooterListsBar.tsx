@@ -19,11 +19,11 @@ const FooterListsBar:React.FC<footerListsBarProp> = ({ title, lists, brands }) =
       </div>
       <div className={`${openedListsBar?"flex":"hidden"} flex-col text-gray-500 text-xs leading-loose`}>
         {lists?.map((elem) => {
-          return <a href="">{elem.text}</a>;
+          return <a href="" key={elem.id}>{elem.text}</a>;
         })}
         <div className="grid grid-cols-3 ">{
             brands?.map((elem)=>{
-                return <div className="h-20 flex items-center justify-center border-l border-b"> <img src={elem.img} alt="" /></div>
+                return <div key={elem.id} className="h-20 flex items-center justify-center border-l border-b"> <img src={elem.img} alt="" /></div>
             })
         }</div>
       </div>

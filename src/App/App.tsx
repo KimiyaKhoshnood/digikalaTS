@@ -1,11 +1,12 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom"
 import Home from "../Pages/Home/Home/Home.tsx"
 import RouterProducts from "../Pages/Product/RouterProducts/RouterProducts.tsx"
 import Login from "../Pages/Login/Login.tsx"
 import OnlineSupport from "../Components/OnlineSupport/OnlineSupport.tsx"
+import { useEffect } from "react"
 
 function App() {
-
+  
   return (
     <div dir="rtl">
       <BrowserRouter>

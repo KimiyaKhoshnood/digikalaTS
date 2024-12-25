@@ -1,7 +1,7 @@
-import { useRef } from "react"
+import React from "react"
 import { NavLink } from "react-router-dom"
 
-const DetailsSectionNav = () => {
+const DetailsSectionNav:React.FC = () => {
 
   return (
     <div className="sticky lg:top-[168px] top-[136px] bg-white z-10">
@@ -12,7 +12,7 @@ const DetailsSectionNav = () => {
             <li className="p-[10px] border-b-[3px] lg:w-fit flex-1 text-center text-nowrap border-transparent"><a href="#details">مشخصات</a></li>
             <li className="p-[10px] border-b-[3px] lg:w-fit flex-1 text-center text-nowrap border-transparent"><a href="#opinions">دیدگاه‌ها</a></li>
             <li className="p-[10px] border-b-[3px] lg:w-fit flex-1 text-center text-nowrap border-transparent"><a href="#questions">پرسش‌ها</a></li>
-            <NavLink/>
+            {/* <NavLink/> */}
         </ul>
     </nav>
     <hr />

@@ -8,7 +8,20 @@ import { u23F0 } from 'react-icons-kit/noto_emoji_regular/u23F0'
 import { arrow_left } from 'react-icons-kit/ikons/arrow_left'
 import {ic_announcement_outline} from 'react-icons-kit/md/ic_announcement_outline'
 
-const LeftGrayBox = ({data}) => {
+type LeftGrayBoxProp = {
+  data:{
+    ProductSellers:{
+      title:string
+      satisfaction:string
+      performance:string
+      guarantee:string
+      price:string
+      plusService:boolean
+    }[]
+  }
+}
+
+const LeftGrayBox:React.FC<LeftGrayBoxProp> = ({data}) => {
   return (
     <div className="w-full lg:max-w-[330px] flex flex-col gap-2">
             <div className="lg:bg-gray-100 min-w-[290px] lg:border border-gray-300 rounded-xl p-4 flex flex-col gap-3">
