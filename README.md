@@ -1,2 +1,2 @@
 # digikalaTS
- Digikala project with TypeScript
+ Digikala project with React and TypeScript
