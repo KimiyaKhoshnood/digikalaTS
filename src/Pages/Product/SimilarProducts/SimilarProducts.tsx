@@ -8,13 +8,14 @@ import AmazingSuggestionItems from "../../Home/AmazingSuggestion/AmazingSuggesti
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchProduct } from "../../../Redux/Posts/ProductReducer";
+import { AppDispatch, RootState } from "../../../Redux/Store";
 
 const SimilarProducts = () => {
-  const { product, loading, error } = useSelector((state) => state.product);
-  const dispatch = useDispatch();
+  const { product, loading, error } = useSelector((state:RootState) => state.product);
+  const dispatch = useDispatch<AppDispatch>();
     useEffect(() => {
       setTimeout(() => {
-        dispatch(fetchProduct());
+        dispatch(fetchProduct(""));
     }, 1000);
   }, []);
 

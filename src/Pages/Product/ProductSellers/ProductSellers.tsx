@@ -1,86 +1,23 @@
-import Icon from 'react-icons-kit'
 import EachSeller from './EachSeller';
 import BlueLinkWithLeftArrow from '../../../Components/BlueLinkWithLeftArrow/BlueLinkWithLeftArrow';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TopicWithRedLine from '../TopicWithRedLine/TopicWithRedLine';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProduct } from '../../../Redux/Posts/ProductReducer';
+import { AppDispatch, RootState } from '../../../Redux/Store';
 
-const ProductSellers = () => {
-  const ProductSellersP = [
-    {
-        "title": "هشتگ کالا رز همراه",
-        "selection": false,
-        "satisfaction": "۱۰۰",
-        "performance": "عالی",
-        "days": 0,
-        "guarantee": "گارانتی ۱۸ ماهه رز همراه فروهر",
-        "price": "۴۵,۸۹۹,۰۰۰",
-        "plusService": true,
-        "id": 1
-    },{
-        "title": "سی تلکام",
-        "selection": false,
-        "satisfaction": "۱۰۰",
-        "performance": "عالی",
-        "days": 0,
-        "guarantee": "گارانتی ۱۸ ماهه پیشتازان فناوری سیب طلایی (سی تلکام)",
-        "price": "۴۵,۹۲۰,۰۰۰",
-        "plusService": true,
-        "id": 2
-    },{
-        "title": "هشتگ کالا رز همراه",
-        "selection": false,
-        "satisfaction": "۱۰۰",
-        "performance": "عالی",
-        "days": 0,
-        "guarantee": "گارانتی ۱۸ ماهه رز همراه فروهر",
-        "price": "۴۵,۸۹۹,۰۰۰",
-        "plusService": true,
-        "id": 3
-    },{
-        "title": "هشتگ کالا رز همراه",
-        "selection": false,
-        "satisfaction": "۱۰۰",
-        "performance": "عالی",
-        "days": 0,
-        "guarantee": "گارانتی ۱۸ ماهه رز همراه فروهر",
-        "price": "۴۵,۸۹۹,۰۰۰",
-        "plusService": true,
-        "id": 4
-    },{
-        "title": "هشتگ کالا رز همراه",
-        "selection": false,
-        "satisfaction": "۱۰۰",
-        "performance": "عالی",
-        "days": 0,
-        "guarantee": "گارانتی ۱۸ ماهه رز همراه فروهر",
-        "price": "۴۵,۸۹۹,۰۰۰",
-        "plusService": true,
-        "id": 5
-    },{
-        "title": "هشتگ کالا رز همراه",
-        "selection": false,
-        "satisfaction": "۱۰۰",
-        "performance": "عالی",
-        "days": 0,
-        "guarantee": "گارانتی ۱۸ ماهه رز همراه فروهر",
-        "price": "۴۵,۸۹۹,۰۰۰",
-        "plusService": true,
-        "id": 6
-    }
-  ]
+const ProductSellers:React.FC = () => {
 
-  const { product, loading, error } = useSelector((state) => state.product);
-  const dispatch = useDispatch();
+  const { product, loading, error } = useSelector((state:RootState) => state.product);
+  const dispatch = useDispatch<AppDispatch>();
     useEffect(() => {
       setTimeout(() => {
-        dispatch(fetchProduct());
+        dispatch(fetchProduct(""));
     }, 1000);
   }, []);
 
   const [readMore, setReadMore] = useState(false);
-  const [readMoreBtn, setReadMoreBtn] = useState("مشاهده بیشتر");
+  const [readMoreBtn, setReadMoreBtn] = useState<"مشاهده بیشتر"|"بستن">("مشاهده بیشتر");
 
   const ReadMoreBtnFunc = () => {
     setReadMore(!readMore);
@@ -95,7 +32,7 @@ const ProductSellers = () => {
           </div>
           <div>
             {product?.ProductSellers.map((elem, index)=>{
-                return (index<4 || readMore) && <EachSeller data={elem}/>
+                return (index<4 || readMore) && <EachSeller key={elem.id} data={elem}/>
             })}
           </div>
           <div className='py-3'>

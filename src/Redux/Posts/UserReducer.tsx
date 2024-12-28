@@ -1,19 +1,19 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-type FooterData = {id:string, PhoneOrEmail:string}[]
+type UserData = {id:string, PhoneOrEmail:string}[]
 
 // the initial state type
-type FooterState = {
-  user: FooterData | null;
+type UserState = {
+  user: UserData | null;
   loadingUser: boolean;
   errorUser: string;
 }
 
 
-export const fetchUser = createAsyncThunk<FooterData | string>(`user/fetch`, async () => {
+export const fetchUser = createAsyncThunk<UserData | string>(`user/fetch`, async () => {
   try {
-    const res = await axios.get<FooterData>(`http://localhost:3005/user`)
+    const res = await axios.get<UserData>(`http://localhost:3005/user`)
     return res.data;
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
@@ -25,7 +25,7 @@ export const fetchUser = createAsyncThunk<FooterData | string>(`user/fetch`, asy
   }
 });
 
-const initialState: FooterState = {
+const initialState: UserState = {
   user: null,
   loadingUser: true,
   errorUser: "",

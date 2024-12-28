@@ -1,4 +1,6 @@
-const TopicWithRedLine = ({title}) => {
+import React from "react"
+
+const TopicWithRedLine:React.FC<{title: string}> = ({title}) => {
   return (
     <>
     <p className="py-3 font-bold">{title}</p>

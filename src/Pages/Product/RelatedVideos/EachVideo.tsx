@@ -1,8 +1,18 @@
+import React from "react"
 import Icon from "react-icons-kit"
 import { u25C0 } from "react-icons-kit/noto_emoji_regular/u25C0"
 import { SwiperSlide } from "swiper/react"
 
-const EachVideo = ({videoDetails}) => {
+type EachVideoProp = {
+  videoDetails:{
+    video: string
+    title: string
+    profilePic: string
+    accountName: string
+  }
+}
+
+const EachVideo:React.FC<EachVideoProp> = ({videoDetails}) => {
   return (
     <>
                 <div className="bg-black w-[280px] !h-[280px] flex justify-center">

@@ -3,19 +3,18 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import { FreeMode, Navigation } from "swiper/modules";
-import {u25C0} from 'react-icons-kit/noto_emoji_regular/u25C0'
-import Icon from "react-icons-kit";
 import EachVideo from "./EachVideo";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchProduct } from "../../../Redux/Posts/ProductReducer";
+import { AppDispatch, RootState } from "../../../Redux/Store";
 
 const RelatedVideos = () => {
-  const { product, loading, error } = useSelector((state) => state.product);
-  const dispatch = useDispatch();
+  const { product, loading, error } = useSelector((state:RootState) => state.product);
+  const dispatch = useDispatch<AppDispatch>();
     useEffect(() => {
       setTimeout(() => {
-        dispatch(fetchProduct());
+        dispatch(fetchProduct(""));
     }, 1000);
   }, []);
 

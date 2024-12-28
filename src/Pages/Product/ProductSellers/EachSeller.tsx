@@ -4,8 +4,21 @@ import { ic_verified_user_outline } from "react-icons-kit/md/ic_verified_user_ou
 import { u1F69A } from "react-icons-kit/noto_emoji_regular/u1F69A";
 import { u2734 } from "react-icons-kit/noto_emoji_regular/u2734";
 import PriceWithToman from "../../../Components/PriceWithToman/PriceWithToman";
+import React from "react";
 
-const EachSeller = ({data}) => {
+type EachSellerProp = {
+  data:{
+    title: string
+    satisfaction: string
+    performance: string
+    days: number
+    guarantee: string
+    price: string
+    plusService: boolean
+  }
+}
+
+const EachSeller:React.FC<EachSellerProp> = ({data}) => {
   return (
     <div className="p-5 flex flex-col gap-4 odd:bg-white even:bg-gray-50 rounded-xl">
       <div className="flex justify-between">

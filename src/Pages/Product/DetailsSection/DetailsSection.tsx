@@ -41,8 +41,6 @@ const DetailsSection:React.FC = () => {
     setReadMore(!readMore);
     readMore ? setReadMoreBtn("بیشتر") : setReadMoreBtn("بستن");
   };
-
-  console.log(product);
   
 
   return (

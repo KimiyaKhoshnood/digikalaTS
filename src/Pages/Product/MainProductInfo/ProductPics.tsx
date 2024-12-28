@@ -20,7 +20,6 @@ const ProductPics:React.FC = () => {
   })
   const handleMouseMove = (event:React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const imageZoom = imageZoomRef.current;
-    console.log(imageZoom);
     
     if (imageZoom) {
       const pointer = {

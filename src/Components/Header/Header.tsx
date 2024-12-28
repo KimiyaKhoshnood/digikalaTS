@@ -138,7 +138,7 @@ const Header = () => {
           </div>
           <div className="flex items-center h-fit gap-4">
             {/* ???????????????? */}
-            {user ? (
+            {!user ? (
               <button className="h-[40px] flex items-center gap-1 px-5 border border-gray-300 rounded-lg text-xs font-semibold">
                 <Icon
                   icon={login}
@@ -324,7 +324,7 @@ const Header = () => {
               />
             </div>
           </nav>
-        ) : null}
+        ) : <div className="h-10"></div>}
         <hr />
       </header>
 

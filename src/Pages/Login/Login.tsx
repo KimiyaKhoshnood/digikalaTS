@@ -1,23 +1,31 @@
 import axios from "axios";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { Navigate } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  type inputs = {
+    id: string | number,
+    PhoneOrEmail: string
+  }
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ criteriaMode: "all" });
-  const onSubmit = async (data) => {
+  } = useForm<inputs>({ criteriaMode: "all" });
+  const onSubmit:SubmitHandler<inputs> = async (data) => {
     try {
-      await axios.post(`http://localhost:3004/user`, data)
+      const data2 = { ...data, id: new Date().getTime() }
+      const response = await axios.post(`http://localhost:3004/user`, data2)
+      console.log("Data added successfully:", response.data);
       navigate("/", { replace: true }); // <-- redirect
     } catch (error) {
       console.error("There was an error!", error);
     }
   }
+
+  
 
   return (<>
     <div className="flex justify-center items-center h-[100vh]">
@@ -43,7 +51,7 @@ const Login = () => {
               {...register("PhoneOrEmail", {
                 required: "لطفا این قسمت را خالی نگذارید",
                 pattern: {
-                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  value:  /(^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$)|(^09\d{9}$)/i,
                   message: "شماره موبایل یا ایمیل نادرست است.",
                 },
               })}

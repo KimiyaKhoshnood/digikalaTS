@@ -13,16 +13,17 @@ import ProductSwiper from "../ProductSwiper/ProductSwiper";
 import RelatedTags from "../RelatedTags/RelatedTags";
 import RelatedVideos from "../RelatedVideos/RelatedVideos";
 import SimilarProducts from "../SimilarProducts/SimilarProducts";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { fetchProduct } from "../../../Redux/Posts/ProductReducer";
 import Loading from "../Loading/Loading";
+import { AppDispatch, RootState } from "../../../Redux/Store";
 
-const Product = () => {
-  const { product, loading, error } = useSelector((state) => state.product);
-  const dispatch = useDispatch();
+const Product:React.FC = () => {
+  const { product, loading, error } = useSelector((state:RootState) => state.product);
+  const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     setTimeout(() => {
-      dispatch(fetchProduct());
+      dispatch(fetchProduct(""));
     }, 1000);
   }, []);
   return (

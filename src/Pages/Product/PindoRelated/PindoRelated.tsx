@@ -7,15 +7,16 @@ import "swiper/css/navigation";
 import { FreeMode, Navigation } from "swiper/modules";
 import PriceWithToman from "../../../Components/PriceWithToman/PriceWithToman";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { fetchProduct } from "../../../Redux/Posts/ProductReducer";
+import { AppDispatch, RootState } from "../../../Redux/Store";
 
-const PindoRelated = () => {
-  const { product, loading, error } = useSelector((state) => state.product);
-  const dispatch = useDispatch();
+const PindoRelated:React.FC = () => {
+  const { product, loading, error } = useSelector((state:RootState) => state.product);
+  const dispatch = useDispatch<AppDispatch>();
     useEffect(() => {
       setTimeout(() => {
-        dispatch(fetchProduct());
+        dispatch(fetchProduct(""));
     }, 1000);
   }, []);
   return (
